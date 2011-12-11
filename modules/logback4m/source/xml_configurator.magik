@@ -1,0 +1,139 @@
+##
+## File            : $File: (configuration.magik) $
+## SCM             : $URL$
+##
+## Copyright       : Realworld Systems
+##                   e-mail  : support@realworld-systems.com
+##                   address : Venusstraat 17, 4105 JH Culemborg, The Netherlands
+##                   tel     : +31(0)345 614406
+##                   fax     : +31(0)345 614319
+##
+## Contains        : 
+##
+##
+## Date written    : 2011-12-04
+## Date changed    : $Date$
+## Revision        : $Rev$
+
+_package user
+$
+
+def_slotted_exemplar(
+	:xml_configurator,
+	{
+		{:appenders, property_list.new()}
+	},
+	{})
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_private _method xml_configurator.new()
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_private _method xml_configurator.configuration_file_path
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_local l_method << _self.method(:configuration_file_path)
+	_local l_module << l_method.source_module
+	_local l_module_directory << l_module.full_directory
+	_local l_config_file << system.pathname_down(l_module_directory, "resources", "config.xml")
+	_return l_config_file
+_endmethod
+$
+
+_private _method xml_configurator.read_appender_configuration(p_xml_element)
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_local l_name << p_xml_element.attributes[:name].as_symbol()
+	_local l_class << p_xml_element.attributes[:class].as_symbol()
+
+	# XXX: HACK
+	_local l_layout << simple_layout.new()
+	.appenders[l_name] << !current_package![l_class].new(l_layout)
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_private _method xml_configurator.read_root_logger_configuration(p_xml_element)
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_local l_root_attributes << p_xml_element.attributes
+
+	_local l_appender_ref_element << p_xml_element.get_element(:|appender-ref|)
+	_local l_appender_ref_attributes << l_appender_ref_element.attributes
+
+	_local l_level << l_root_attributes[:level]
+	_local l_appender_name << l_appender_ref_attributes[:ref].as_symbol()
+	_local l_appender << .appenders[l_appender_name]
+
+	logger_factory.root_level << _self.levels[l_level]
+	logger_factory.add_root_appender(l_appender)
+_endmethod
+$
+
+xml_configurator.define_shared_constant(
+	:levels,
+	equality_hash_table.new_with(
+		"TRACE", logger.TRACE,
+		"DEBUG", logger.DEBUG,
+		"INFO", logger.INFO,
+		"WARN", logger.WARN,
+		"ERROR", logger.ERROR,
+		"OFF",  logger.OFF),
+	:private)
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_private _method xml_configurator.parse_configuration(p_config_file)
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_local l_xml << simple_xml.read_document_file(p_config_file)
+	_local l_config_element << l_xml.elements.an_element()
+	 
+	_for i_appender_element _over l_config_element.get_elements(:appender)
+	_loop
+		_self.read_appender_configuration(i_appender_element)
+	_endloop
+
+	_local l_root_element << l_config_element.get_element(:root)
+	_self.read_root_logger_configuration(l_root_element)
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_method xml_configurator.read_configuration()
+	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_local l_config_file << _self.configuration_file_path
+	_self.parse_configuration(l_config_file)
+_endmethod
+$

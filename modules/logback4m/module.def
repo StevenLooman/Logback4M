@@ -1,0 +1,6 @@
+logback4m	1
+
+description
+	Logger module loosely based on LOGBack (http://logback.qos.ch/)
+end
+

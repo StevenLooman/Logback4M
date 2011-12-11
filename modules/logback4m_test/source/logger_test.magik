@@ -1,0 +1,139 @@
+def_slotted_exemplar(
+	:logger_test,
+	{
+		{:logger, _unset},
+		{:mock_appender, _unset}
+	},
+	{
+		@sw:test_case
+	})
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.set_up()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.mock_appender << mock_appender.new()
+	.logger << logger.new(:logger_test)
+	.logger.add_appender(.mock_appender)
+_endmethod
+$
+
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_trace()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.TRACE
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 5)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_debug()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.DEBUG
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 4)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_info()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.INFO
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 3)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_warn()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.WARN
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 2)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_error()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.ERROR
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 1)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method logger_test.test_log_level_off()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger.level << logger.OFF
+	.logger.trace("test message")
+	.logger.debug("test message")
+	.logger.info("test message")
+	.logger.warn("test message")
+	.logger.error("test message")
+	
+	_self.assert_equals(.mock_appender.log_events.size, 0)
+_endmethod
+$

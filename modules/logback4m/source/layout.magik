@@ -1,0 +1,101 @@
+def_slotted_exemplar(
+	:layout,
+	{},
+	{})
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method layout.new()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_return _clone.init()
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_private _method layout.init()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_return _self
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.do_layout(p_log_event)
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.content_type
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.file_footer
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.file_header
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.presentation_footer
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger})
+_abstract _method layout.presentation_header
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	
+_endmethod
+$

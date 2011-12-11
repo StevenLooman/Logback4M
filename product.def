@@ -1,0 +1,10 @@
+logback4m layered_product
+
+title
+	Logback4M
+end
+
+description
+	A port of Logback to Magik
+end
+

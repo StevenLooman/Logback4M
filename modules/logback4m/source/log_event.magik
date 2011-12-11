@@ -1,0 +1,40 @@
+def_slotted_exemplar(
+	:log_event,
+	{
+		{:logger_name, _unset, :readable},
+		{:thread, _unset, :readable},
+		{:timestamp, _unset, :readable},
+		{:level, _unset, :readable},
+		{:message, _unset, :readable}
+	},
+	{})
+$
+
+_pragma(classify_level=basic, topic={logger})
+_method log_event.new(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_return _clone.init(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
+_endmethod
+$
+
+_pragma(classify_level=restricted, topic={logger})
+_private _method log_event.init(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.logger_name << p_source_logger_name
+	.thread << p_source_thread
+	.timestamp << p_timestamp
+	.level << p_level
+	.message << p_message
+	_return _self
+_endmethod
+$

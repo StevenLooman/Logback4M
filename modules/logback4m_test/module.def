@@ -1,0 +1,23 @@
+logback4m_test	1
+
+description
+	Tests the logback4m module
+end
+
+requires
+	munit_base
+	logback4m
+end
+
+tests_modules
+	logback4m
+end
+
+test
+	name		logback4m_test
+	topics		munit
+	framework	munit
+	args		logback4m_tset
+end
+
+hidden

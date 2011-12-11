@@ -1,0 +1,12 @@
+log_event
+layout
+appender
+logger
+logger_factory
+xml_configurator
+
+simple_layout
+
+output_stream_appender
+file_appender
+console_appender

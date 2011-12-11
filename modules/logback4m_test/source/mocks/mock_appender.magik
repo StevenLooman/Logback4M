@@ -1,0 +1,46 @@
+def_slotted_exemplar(
+	:mock_appender,
+	{
+		{:log_events, _unset, :readable}
+	},
+	{
+		:appender
+	})
+$
+
+_pragma(classify_level=basic, topic={logger_test})
+_method mock_appender.new()
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	_return _clone.init(:mock_appender)
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger_test})
+_private _method mock_appender.init(p_name)
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.log_events << rope.new()
+	_return _self
+_endmethod
+$
+
+_pragma(classify_level=basic, topic={logger_test})
+_method mock_appender.do_append(p_log_event)
+	#  Initial Author  : steven.looman, Date : 2011-12-02
+	## Parameters      : -
+	## Returns         : -
+	## Pre             : -
+	## Function        : -
+	## Post            : -
+	.log_events.add_last(p_log_event)
+_endmethod
+$

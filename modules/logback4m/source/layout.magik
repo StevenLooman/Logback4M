@@ -6,96 +6,72 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method layout.new()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : 
+	## Returns         : 
 	_return _clone.init()
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method layout.init()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	_return _self
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.do_layout(p_log_event)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Layout the given log_event
+	## Parameters      : p_log_event: log event to layout
+	## Returns         : string
 	
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.content_type
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.file_footer
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.file_header
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.presentation_footer
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method layout.presentation_header
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $

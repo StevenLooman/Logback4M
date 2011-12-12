@@ -46,24 +46,18 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.new(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_name: name of the logger
+	## Returns         : 
 	_return _clone.init(p_name)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method logger.init(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_name: name of the logger
+	## Returns         : 
 	.appenders << rope.new()
 	.name << p_name
 	.level << _self.OFF
@@ -74,36 +68,27 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.add_appender(p_appender)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Add an appender to this logger
+	## Parameters      : p_appender: Appender to add
+	## Returns         : 
 	.appenders.add_last(p_appender)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.detach_appender(p_appender)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Detach an appender from this logger
+	## Parameters      : p_appender: Appender to detach
+	## Returns         : 
 	.appenders.remove(p_appender)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.get_appender(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Get an attached appender by its name
+	## Parameters      : p_nane: Name of the appender
+	## Returns         : 
 	_for i_appender _over .appenders.fast_elements()
 	_loop
 		_local l_appender_name << i_appender.name
@@ -121,12 +106,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.level << p_level
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Set the log level for this logger
+	## Parameters      : p_level: New level
+	## Returns         : 
 	_if p_level < _self.TRACE _orif
 	    p_level > _self.OFF
 	_then
@@ -140,72 +122,54 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_trace_enabled?
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger trace enabled?
+	## Parameters      : 
+	## Returns         : boolean
 	_return _self.is_enabled_for?(_self.TRACE)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_debug_enabled?
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger debug enabled?
+	## Parameters      : 
+	## Returns         : boolean
 	_return _self.is_enabled_for?(_self.DEBUG)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_info_enabled?
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger info enabled?
+	## Parameters      : 
+	## Returns         : boolean
 	_return _self.is_enabled_for?(_self.INFO)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_warn_enabled?
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger warn enabled?
+	## Parameters      : 
+	## Returns         : boolean
 	_return _self.is_enabled_for?(_self.WARN)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_error_enabled?
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger error enabled?
+	## Parameters      : 
+	## Returns         : boolean
 	_return _self.is_enabled_for?(_self.ERROR)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.is_enabled_for?(p_level)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Is this logger enabled for p_level?
+	## Parameters      : p_level: level to check
+	## Returns         : boolean
 	_return .level <= p_level
 _endmethod
 $
@@ -215,60 +179,45 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.trace(_gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Fire a log event with the trace level
+	## Parameters      : p_message: message to log
+	## Returns         : 
 	_self.log(_self.TRACE, _scatter p_message)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.debug(_gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Fire a log event with the debug level
+	## Parameters      : p_message: message to log
+	## Returns         : 
 	_self.log(_self.DEBUG, _scatter p_message)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.info(_gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Fire a log event with the info level
+	## Parameters      : p_message: message to log
+	## Returns         : 
 	_self.log(_self.INFO, _scatter p_message)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.warn(_gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Fire a log event with thew warn level
+	## Parameters      : p_message: message to log
+	## Returns         : 
 	_self.log(_self.WARN, _scatter p_message)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.error(_gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Fire a log event with the error level
+	## Parameters      : p_message: message to log
+	## Returns         : 
 	_self.log(_self.ERROR, _scatter p_message)
 _endmethod
 $
@@ -276,12 +225,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method logger.create_log_event(p_level, _gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Create a new log event
+	## Parameters      : p_level: log level
+	##                   p_message: message to log
+	## Returns         : log_event
 	_local l_log_event << log_event.new(
 				      _self.name,
 				      _thisthread,
@@ -296,12 +243,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger.log(p_level, _gather p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Log a message, at the given level
+	## Parameters      : p_level: log level
+	##                   p_message: message to log
+	## Returns         : 
 	_if p_level < .level
 	_then
 		_return

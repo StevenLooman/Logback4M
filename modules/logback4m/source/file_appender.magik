@@ -27,26 +27,22 @@ def_slotted_exemplar(
 $
 
 _pragma(classify_level=basic, topic={logger})
-_method file_appender.new(p_filename)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	_return _clone.init(p_filename)
+_method file_appender.new(p_filename, p_layout)
+	## Function        : Constructor
+	## Parameters      : p_filename: filename append to
+	##                   p_layout: layout to use
+	## Returns         : self
+	_return _clone.init(p_filename, p_layout)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
-_private _method file_appender.init(p_filename)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+_private _method file_appender.init(p_filename, p_layout)
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	.output_stream << external_text_output_stream.new(p_filename)
+	.layout << p_layout
 	_return _self
 _endmethod
 $

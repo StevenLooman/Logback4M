@@ -12,24 +12,22 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method log_event.new(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_source_logger_name: logger this log event originates from
+	##                   p_source_thread: thread this log event originates from
+	##                   p_timestamp: timestamp for this low event
+	##                   p_level: level for this log even
+	##                   p_message: message for this log event
+	## Returns         : self
 	_return _clone.init(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
 _endmethod
 $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method log_event.init(p_source_logger_name, p_source_thread, p_timestamp, p_level, p_message)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	.logger_name << p_source_logger_name
 	.thread << p_source_thread
 	.timestamp << p_timestamp

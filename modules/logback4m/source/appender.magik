@@ -8,24 +8,15 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method appender.new(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_name: name of the appender
+	## Returns         : self
 	_return _clone.init(p_name)
 _endmethod
 $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method appender.init(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
 	.name << p_name
 	_return _self
 _endmethod
@@ -33,12 +24,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _abstract _method appender.do_append(p_log_event)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Do the append
+	## Parameters      : p_log_event: Log event to append
+	## Returns         : 
 	
 _endmethod
 $

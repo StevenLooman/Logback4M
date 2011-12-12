@@ -10,36 +10,27 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method logger_factory.new()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Private constructor, singleton
+	## Parameters      : 
+	## Returns         : 
 	_return _clone.init()
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method logger_factory.init()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	_return _self
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
-_method logger_factory.create_logger(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+_private _method logger_factory.create_logger(p_name)
+	## Function        : Create a logger, identified by p_name
+	## Parameters      : p_name: name of the logger
+	## Returns         : logger
 	_local l_logger << logger.new(p_name)
 	
 	_for i_appender _over .root_appenders.fast_elements()
@@ -54,12 +45,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_factory.get_logger(p_name)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Get the logger for p_name
+	## Parameters      : p_name: name of the logger
+	## Returns         : logger
 	_if .loggers[p_name] _is _unset
 	_then
 		.loggers[p_name] << _self.create_logger(p_name)
@@ -71,12 +59,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_factory.get_logger_by_exemplar(p_exemplar)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Get the logger for the p_exemplar
+	## Parameters      : p_exemplar: name of the exemplar is derived 
+	## Returns         : logger
 	_local l_exemplar_name << p_exemplar.class_name
 	_return _self.get_logger(l_exemplar_name)
 _endmethod
@@ -85,12 +70,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_factory.add_root_appender(p_appender)
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Add an appender to the root logger
+	## Parameters      : p_appender: appender to attach
+	## Returns         : 
 	.root_appenders.add(p_appender)
 _endmethod
 $
@@ -98,12 +80,9 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_factory.root_level << p_level
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Set the level for the root logger
+	## Parameters      : p_level: level of the appender
+	## Returns         : 
 	.root_level << p_level
 _endmethod
 $

@@ -28,24 +28,18 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method console_appender.new(p_layout)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_layout: layout to use
+	## Returns         : self
 	_return _clone.init(p_layout)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method console_appender.init(p_layout)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	.output_stream << !output!
 	_return _super.init(p_layout)
 _endmethod

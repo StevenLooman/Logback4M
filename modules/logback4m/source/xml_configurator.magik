@@ -28,24 +28,18 @@ $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method xml_configurator.new()
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Private constructor, singleton
+	## Parameters      : 
+	## Returns         : 
 	
 _endmethod
 $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method xml_configurator.configuration_file_path
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Get the configuration file path
+	## Parameters      : 
+	## Returns         : string
 	_local l_method << _self.method(:configuration_file_path)
 	_local l_module << l_method.source_module
 	_local l_module_directory << l_module.full_directory
@@ -55,12 +49,9 @@ _endmethod
 $
 
 _private _method xml_configurator.read_appender_configuration(p_xml_element)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Read the appender configuration
+	## Parameters      : p_xml_element: xml element containing the appender configuration
+	## Returns         : 
 	_local l_name << p_xml_element.attributes[:name].as_symbol()
 	_local l_class << p_xml_element.attributes[:class].as_symbol()
 
@@ -72,12 +63,9 @@ $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method xml_configurator.read_root_logger_configuration(p_xml_element)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Read the root logger configuration
+	## Parameters      : p_xml_element: xml element containing the root logger configuration
+	## Returns         : 
 	_local l_root_attributes << p_xml_element.attributes
 
 	_local l_appender_ref_element << p_xml_element.get_element(:|appender-ref|)
@@ -106,12 +94,9 @@ $
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method xml_configurator.parse_configuration(p_config_file)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	_local l_xml << simple_xml.read_document_file(p_config_file)
 	_local l_config_element << l_xml.elements.an_element()
 	 
@@ -127,12 +112,9 @@ $
 
 _pragma(classify_level=restricted, topic={logger})
 _method xml_configurator.read_configuration()
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Read the configuration and configure the logger_factory
+	## Parameters      : 
+	## Returns         : 
 	_local l_config_file << _self.configuration_file_path
 	_self.parse_configuration(l_config_file)
 _endmethod

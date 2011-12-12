@@ -31,24 +31,18 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method output_stream_appender.new(p_layout)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : p_layout: layout to use in this appender
+	## Returns         : 
 	_return _clone.init(p_layout)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method output_stream_appender.init(p_layout)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : self
 	.layout << p_layout
 	_return _self
 _endmethod
@@ -56,36 +50,27 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method output_stream_appender.layout << p_layout
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Set the layout to be used from now on
+	## Parameters      : 
+	## Returns         : 
 	.layout << p_layout
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method output_stream_appender.layout
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Get the currently used layout
+	## Parameters      : 
+	## Returns         : layout
 	_return .layout
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method output_stream_appender.do_append(p_log_event)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Append the p_log_event
+	## Parameters      : p_log_event: log_event to append
+	## Returns         : 
 	_local l_output_string << .layout.do_layout(p_log_event)
 	.output_stream.write(l_output_string)
 	.output_stream.newline()

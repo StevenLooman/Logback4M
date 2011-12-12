@@ -28,36 +28,27 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method simple_layout.new()
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Constructor
+	## Parameters      : 
+	## Returns         : 
 	_return _clone.init()
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _private _method simple_layout.init()
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : 
+	## Parameters      : 
+	## Returns         : 
 	_return _self
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
 _method simple_layout.do_layout(p_log_event)
-	#  Initial Author  : steven.looman (REALWORLD), Date : 2011-12-04
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Layout the p_log_event, separated by "|"-characters
+	## Parameters      : 
+	## Returns         : 
 	_return write_string(
 			p_log_event.timestamp, "|",
 			p_log_event.logger_name, "|",

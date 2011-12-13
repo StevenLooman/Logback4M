@@ -36,12 +36,14 @@ _private _method xml_configurator.read_appender_configuration(p_xml_element)
 	## Parameters      : p_xml_element: xml element containing the appender configuration
 	## Returns         :
 	_local l_attributes << p_xml_element.attributes
-	_local l_name << l_attributes[:name].as_symbol()
-	_local l_class << l_attributes[:class].as_symbol()
-
-	# XXX: HACK
-	_local l_layout << simple_layout.new()
-
+	 
+	# encoder/layout
+	_local l_encoder_element << p_xml_element.get_element(:encoder)
+	_local l_layout << _self.read_encoder_configuration(l_encoder_element)
+	 
+	# appender
+	_local l_appender_name << l_attributes[:name].as_symbol()
+	_local l_appender_class << l_attributes[:class].as_symbol()
 	_local l_properties << property_list.new()
 	_for i_element _over p_xml_element.elements.fast_elements()
 	_loop
@@ -49,9 +51,19 @@ _private _method xml_configurator.read_appender_configuration(p_xml_element)
 		_local l_value << i_element.get_element_contents()
 		l_properties[l_name] << l_value
 	_endloop
-
 	
-	.appenders[l_name] << !current_package![l_class].new(l_properties, l_layout)
+	.appenders[l_appender_name] << !current_package![l_appender_class].new(l_properties, l_layout)
+_endmethod
+$
+
+_private _method xml_configurator.read_encoder_configuration(p_xml_element)
+	## Function        : Read the encoder/layout configuration
+	## Parameters      : p_xml_element: xml element containing the appender configuration
+	## Returns         :
+	_local l_layout_element << p_xml_element.elements.an_element()
+	_local l_layout_name << l_layout_element.type
+	_local l_layout_params << l_layout_element.type
+	_return !current_package![l_layout_name].new(l_layout_params)
 _endmethod
 $
 
@@ -61,15 +73,25 @@ _private _method xml_configurator.read_logger_configuration(p_xml_element)
 	## Parameters      : p_xml_element: xml element containing the logger configuration
 	## Returns         :
 	_local l_attributes << p_xml_element.attributes
-	
+
+	# logger name
 	_local l_logger_name << l_attributes[:name].as_symbol()
 	_local l_logger << logger_factory.get_logger(l_logger_name)
-	
+
+	# log level
 	_local l_logger_level << l_attributes[:level]
 	l_logger.level << _self.levels[l_logger_level]
+
+	# appeners
+	_for i_appender_ref_element _over p_xml_element.elements_matching_name(:|appender-ref|)
+	_loop
+		_local l_appender_ref_attributes << i_appender_ref_element.attributes
+		_local l_appender_name << l_appender_ref_attributes[:ref].as_symbol()
+		_local l_appender << .appenders[l_appender_name]
+		l_logger.add_appender(l_appender)
+	_endloop
 _endmethod
 $
-
 
 _pragma(classify_level=restricted, topic={logger})
 _private _method xml_configurator.read_root_logger_configuration(p_xml_element)
@@ -78,15 +100,18 @@ _private _method xml_configurator.read_root_logger_configuration(p_xml_element)
 	## Returns         : 
 	_local l_root_attributes << p_xml_element.attributes
 
-	_local l_appender_ref_element << p_xml_element.get_element(:|appender-ref|)
-	_local l_appender_ref_attributes << l_appender_ref_element.attributes
-
+	# log level
 	_local l_level << l_root_attributes[:level]
-	_local l_appender_name << l_appender_ref_attributes[:ref].as_symbol()
-	_local l_appender << .appenders[l_appender_name]
-
 	logger_factory.root_level << _self.levels[l_level]
-	logger_factory.add_root_appender(l_appender)
+
+	# appender
+	_for i_appender_ref_element _over p_xml_element.elements_matching_name(:|appender-ref|)
+	_loop
+		_local l_appender_ref_attributes << i_appender_ref_element.attributes
+		_local l_appender_name << l_appender_ref_attributes[:ref].as_symbol()
+		_local l_appender << .appenders[l_appender_name]
+		logger_factory.add_root_appender(l_appender)
+	_endloop
 _endmethod
 $
 

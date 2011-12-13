@@ -1,20 +1,3 @@
-##
-## File            : $File: (file_appender.magik) $
-## SCM             : $URL$
-##
-## Copyright       : Realworld Systems
-##                   e-mail  : support@realworld-systems.com
-##                   address : Venusstraat 17, 4105 JH Culemborg, The Netherlands
-##                   tel     : +31(0)345 614406
-##                   fax     : +31(0)345 614319
-##
-## Contains        : 
-##
-##
-## Date written    : 2011-12-04
-## Date changed    : $Date$
-## Revision        : $Rev$
-
 _package user
 $
 
@@ -27,21 +10,22 @@ def_slotted_exemplar(
 $
 
 _pragma(classify_level=basic, topic={logger})
-_method file_appender.new(p_filename, p_layout)
+_method file_appender.new(p_properties, p_layout)
 	## Function        : Constructor
-	## Parameters      : p_filename: filename append to
+	## Parameters      : p_properties: properties sent to the appender
 	##                   p_layout: layout to use
 	## Returns         : self
-	_return _clone.init(p_filename, p_layout)
+	_return _clone.init(p_properties, p_layout)
 _endmethod
 $
 
 _pragma(classify_level=basic, topic={logger})
-_private _method file_appender.init(p_filename, p_layout)
+_private _method file_appender.init(p_properties, p_layout)
 	## Function        : 
 	## Parameters      : 
-	## Returns         : 
-	.output_stream << external_text_output_stream.new(p_filename)
+	## Returns         :
+	_local l_filename << p_properties[:file]
+	.output_stream << external_text_output_stream.new(l_filename)
 	.layout << p_layout
 	_return _self
 _endmethod

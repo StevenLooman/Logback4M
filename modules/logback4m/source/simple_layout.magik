@@ -1,5 +1,4 @@
-_package user
-$
+_package logback4m
 
 def_slotted_exemplar(
 	:simple_layout,

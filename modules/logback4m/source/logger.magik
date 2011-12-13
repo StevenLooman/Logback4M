@@ -1,3 +1,5 @@
+_package logback4m
+
 def_slotted_exemplar(
 	:logger,
 	{

@@ -1,3 +1,5 @@
+_package logback4m
+
 def_slotted_exemplar(
 	:logger_test,
 	{
@@ -11,14 +13,11 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.set_up()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
+	## Function        : Set up
+	## Parameters      : 
+	## Returns         : 
 	.mock_appender << mock_appender.new()
-	.logger << logger.new(:logger_test)
+	.logger << logback4m:logger.new(:logger_test)
 	.logger.add_appender(.mock_appender)
 _endmethod
 $
@@ -26,13 +25,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_trace()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.TRACE
+	## Function        : Tests if all events >= TRACE are recorded
+	## Parameters      : 
+	## Returns         : 
+	.logger.level << logback4m:logger.TRACE
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
@@ -45,13 +41,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_debug()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.DEBUG
+	## Function        : Tests if all events >= DEBUG are recorded
+	## Parameters      : 
+	## Returns         : 
+	.logger.level << logback4m:logger.DEBUG
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
@@ -64,13 +57,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_info()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.INFO
+	## Function        : Tests if all events >= INFO are recorded
+	## Parameters      : 
+	## Returns         : 
+	.logger.level << logback4m:logger.INFO
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
@@ -83,13 +73,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_warn()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.WARN
+	## Function        : Tests if all events >= WARN are recorded
+	## Parameters      : 
+	## Returns         : 
+.logger.level << logback4m:logger.WARN
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
@@ -102,13 +89,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_error()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.ERROR
+	## Function        : Tests if all events >= ERROR are recorded
+	## Parameters      : 
+	## Returns         : 
+	.logger.level << logback4m:logger.ERROR
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
@@ -121,13 +105,10 @@ $
 
 _pragma(classify_level=basic, topic={logger})
 _method logger_test.test_log_level_off()
-	#  Initial Author  : steven.looman, Date : 2011-12-02
-	## Parameters      : -
-	## Returns         : -
-	## Pre             : -
-	## Function        : -
-	## Post            : -
-	.logger.level << logger.OFF
+	## Function        : Tests if all events >= OFF (thus none) are recorded
+	## Parameters      : 
+	## Returns         : 
+	.logger.level << logback4m:logger.OFF
 	.logger.trace("test message")
 	.logger.debug("test message")
 	.logger.info("test message")
